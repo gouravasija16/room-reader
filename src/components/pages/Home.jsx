@@ -2,6 +2,7 @@ import Hero from "../home/Hero.jsx"
 import FeaturedRooms from "../home/FeaturedRooms.jsx"
 import HowItWorks from "../home/HowItWorks.jsx"
 import CreateCTA from "../home/CreateCTA.jsx"
+import Footer from "../layout/Footer.jsx"
 export default function Home(){
     return(
         <div>
@@ -9,6 +10,7 @@ export default function Home(){
              <FeaturedRooms />
              <HowItWorks />
              <CreateCTA />
+             <Footer />
         </div>
        
     )
