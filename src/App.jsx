@@ -1,11 +1,26 @@
 import Navbar from "./components/layout/Navbar.jsx"
 import Home from "./components/pages/Home.jsx"
+import {Routes,Route } from "react-router-dom"
+import Rooms from "./components/pages/Rooms.jsx"
+import Footer from "./components/layout/Footer.jsx"
+import MyRooms from "./components/pages/MyRooms.jsx"
+import CreateRoom from "./components/pages/CreateRoom.jsx"
+import RoomDetails from "./components/pages/RoomDetails.jsx"
 function App() {
   return (
-    <header className="bg-background text-text">
-  <Navbar />
-  <Home/>
-  </header>
+    <div className="bg-background text-text">
+      <Navbar />
+       <div >
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/rooms" element={<Rooms />} />
+        <Route path="/myrooms" element={<MyRooms />} />
+        <Route path="/create" element={<CreateRoom />} />
+        <Route path="/rooms/:roomId" element={<RoomDetails />}/>
+      </Routes>
+      </div>
+      <Footer/>
+    </div>
   )
 }
 export default App

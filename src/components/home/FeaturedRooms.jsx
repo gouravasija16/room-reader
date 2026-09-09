@@ -1,6 +1,6 @@
 import { sampleRooms } from "../../data/sampleRooms";
-import RoomCard  from "../shared/RoomCard";
 import Button from "../shared/Button";
+import RoomGrid from "../shared/RoomGrid";
 export default function FeaturedRooms() {
   return (
     <section className="flex flex-col gap-4 py-4 px-3 ">
@@ -10,11 +10,7 @@ export default function FeaturedRooms() {
            View All
          </Button>
     </div>
-    <div className="grid grid-cols-3 gap-6">
-      {sampleRooms.map((room) => (
-        <RoomCard key={room.id} room={room} />
-      ))}
-      </div>
+    <RoomGrid rooms={sampleRooms.slice(0,3)} />
     </section>
   );
 }
