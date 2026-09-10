@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer.jsx"
 import MyRooms from "./components/pages/MyRooms.jsx"
 import CreateRoom from "./components/pages/CreateRoom.jsx"
 import RoomDetails from "./components/pages/RoomDetails.jsx"
+import Gameplay from "./components/pages/Gameplay.jsx"
 function App() {
   return (
     <div className="bg-background text-text">
@@ -17,6 +18,7 @@ function App() {
         <Route path="/myrooms" element={<MyRooms />} />
         <Route path="/create" element={<CreateRoom />} />
         <Route path="/rooms/:roomId" element={<RoomDetails />}/>
+        <Route path="rooms/:roomId/play" element={<Gameplay />}/>
       </Routes>
       </div>
       <Footer/>

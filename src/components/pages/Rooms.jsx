@@ -1,7 +1,6 @@
 import { sampleRooms } from "../../data/sampleRooms"
 import RoomGrid from "../shared/RoomGrid"
 import { useSearchParams } from "react-router-dom"
-
 export default function Rooms() {
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("search") || ""
