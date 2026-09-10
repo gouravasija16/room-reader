@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer(){
     return(
-        <footer>
+        <footer className="m-auto">
             <div className="flex gap-6 justify-center m-3 ">
             <Link to="/">Home</Link>
               <Link to="/rooms">Rooms</Link>

@@ -43,7 +43,7 @@ export default function Rooms() {
                 value={typeFilter}
                 onChange={handleRoomSearch}
                 placeholder="Search rooms..."
-                className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-lg text-text w-250 h-auto"
+                className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text w-250 h-auto"
             />
 
             <select

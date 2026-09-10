@@ -3,7 +3,7 @@ import Button from "../shared/Button";
 import RoomGrid from "../shared/RoomGrid";
 export default function FeaturedRooms() {
   return (
-    <section className="flex flex-col gap-4 py-4 px-3 ">
+    <section className="flex flex-col gap-4 py-7 px-6 max-w-7xl mx-auto  ">
     <div className="flex justify-between">
          <h2 className="text-2xl font-semibold text-text">Featured Rooms</h2>
          <Button variant="text">
