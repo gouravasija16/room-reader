@@ -25,14 +25,18 @@ export default function Gameplay(){
             setfeedback("Not quite,try agian!")
         }
     }
+    const isEscape=currentIndex>=room.puzzles.length
     return(
-        <div className="bg-elevated px-6 py-4 border border-border rounded-2xl m-5 ">
-            <h2 className="text-text text-2xl text-bold tracking-wide mb-3 font">{currentPuzzle.question}</h2>
-            <form onSubmit={HandleAnswer}>
-            <input value={answer} onChange={(e) => setAnswer(e.currentTarget.value)}placeholder="Enter your answer..." className="border border-border rounded-2xl focus:border-accent text-muted text-lg w-100 h-auto px-2 "></input>
-            {feedback && <p>{feedback}</p>}
-            <Button>Submit</Button>
-            </form>
+        <div className="bg-elevated px-6 py-4 border border-border rounded-2xl m-5 ">  {isEscape ? <p>You Escaped!</p>
+            : <>
+                 <h2 className="text-text text-2xl text-bold tracking-wide mb-3 font">{currentPuzzle.question}</h2>
+                 <form onSubmit={HandleAnswer}>
+                   <input value={answer} onChange={(e) => setAnswer(e.currentTarget.value)}placeholder="Enter your answer..." className="border border-border rounded-2xl focus:border-accent text-muted text-lg w-100 h-auto px-2 "></input>
+                   {feedback && <p>{feedback}</p>}
+                   <Button>Submit</Button>
+                </form>
+            </>
+        }
         </div>
         
     )
