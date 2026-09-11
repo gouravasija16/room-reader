@@ -19,6 +19,7 @@ function App() {
         <Route path="/create" element={<CreateRoom />} />
         <Route path="/rooms/:roomId" element={<RoomDetails />}/>
         <Route path="rooms/:roomId/play" element={<Gameplay />}/>
+        <Route path="/rooms/:roomId/results"/>
       </Routes>
       </div>
       <Footer/>

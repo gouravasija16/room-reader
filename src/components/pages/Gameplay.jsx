@@ -1,47 +1,84 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { sampleRooms } from "../../data/sampleRooms"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "../shared/Button"
 import useTimer from "../shared/useTimer"
-export default function Gameplay(){
-     const { roomId } = useParams()
-     const room = sampleRooms.find((sampleRoom) => sampleRoom.id === roomId)
-     const [currentIndex,setCurrentIndex]=useState(0)
-     const [answer, setAnswer] = useState("")
-     const [feedback,setfeedback]=useState("")
-     const time=useTimer()
-     const currentPuzzle=room.puzzles[currentIndex]
-     console.log(currentIndex)
-     function HandleAnswer(e){
-        e.preventDefault()
-        console.log(answer,currentPuzzle.answer)
-        const isCorrect=answer.toLowerCase().trim()===currentPuzzle.answer.toLowerCase().trim()
-        console.log(isCorrect)
-        if(isCorrect){
-            console.log("Advancing")
-            setCurrentIndex(prev=>prev + 1)
-            console.log(currentIndex)
-            setAnswer('')
-            setfeedback("")
-        }else{
-            setfeedback("Not quite,try agian!")
-        }
+import Confetti from "react-confetti"
+
+export default function Gameplay() {
+  const navigate = useNavigate()
+  const { roomId } = useParams()
+  const room = sampleRooms.find((sampleRoom) => sampleRoom.id === roomId)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [answer, setAnswer] = useState("")
+  const [feedback, setfeedback] = useState("")
+  const [isHintsShown, setIsHintsShown] = useState(false)
+
+  const currentPuzzle = room.puzzles[currentIndex]
+  const isEscape = currentIndex >= room.puzzles.length
+  const time = useTimer(!isEscape)
+
+  function HandleAnswer(e) {
+    e.preventDefault()
+    console.log(answer, currentPuzzle.answer)
+    const isCorrect = answer.toLowerCase().trim() === currentPuzzle?.answer.toLowerCase().trim()
+    console.log(isCorrect)
+
+    if (isCorrect) {
+      console.log("Advancing")
+      setCurrentIndex((prev) => prev + 1)
+      console.log(currentIndex)
+      setAnswer("")
+      setfeedback("")
+      setIsHintsShown(false)
+    } else {
+      setfeedback("Not quite,try again!")
     }
-    const isEscape=currentIndex>=room.puzzles.length
-    return(
-        <div className="bg-elevated px-6 py-4 border border-border rounded-2xl m-8 ">  {isEscape ? <p className="text-3xl font-bold text-text tracking-wide font-sans text-center">You Escaped!</p>
-            : <div>
-                 <p>{time}</p>
-                 <p>Puzzle {currentIndex+1} of {room.puzzles.length}</p>
-                 <h2 className="text-text text-2xl text-bold tracking-wide mb-3 font">{currentPuzzle.question}</h2>
-                 <form onSubmit={HandleAnswer}>
-                   <input value={answer} onChange={(e) => setAnswer(e.currentTarget.value)}placeholder="Enter your answer..." className="border border-border rounded-2xl focus:border-accent text-muted text-lg w-100 h-auto px-2 "></input>
-                   {feedback && <p>{feedback}</p>}
-                   <Button>Submit</Button>
-                </form>
-            </div>
-        }
+  }
+
+  useEffect(() => {
+    if (isEscape) {
+      navigate(`/rooms/${roomId}/results`, {
+        state: { time, roomTitle: room.title, isEscape },
+      })
+    }
+  }, [isEscape, navigate, roomId, room.title, time])
+
+  return (
+    <div className="bg-elevated px-6 py-7 border border-border rounded-2xl m-8 "> {isEscape ? (
+      <div className="flex flex-col justify-center items-center">
+        <p className="text-3xl font-bold text-accent tracking-wide font-sans text-center">You Escaped!🎉</p>
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      </div>
+    ) : (
+      <div>
+        <div className="flex justify-between items-center mb-5 font-serif gap-3 ">
+          <h2 className="text-text text-3xl font-bold ">{room.title}</h2>
+          <Button variant="primary" onClick={() => navigate(`/rooms/${roomId}`)}>Back to Room</Button>
+          <p className="text-accent font-bold text-xl  md:text-medium">{time}</p>
         </div>
-        
-    )
+        <p className="text-muted  text-sm font-sans">Puzzle {currentIndex + 1} of {room.puzzles.length}</p>
+        <h2 className="text-2xl text-bold tracking-wide font-serif text-amber-50 my-3">{currentPuzzle?.question}</h2>
+        <form onSubmit={HandleAnswer}>
+          <input
+            value={answer}
+            onChange={(e) => setAnswer(e.currentTarget.value)}
+            placeholder="Enter your answer..."
+            className="border border-accent rounded-2xl focus:border-accent text-muted text-lg  w-100 md:w-200  h-auto px-2 mr-6 "
+          ></input>
+          <Button variant="primary" className="w-20 h-auto">Submit</Button>
+        </form>
+        {feedback && <p className="text-red-500 tracking-wide">{feedback}</p>}
+        <div className="mt-5">
+          <Button onClick={() => setIsHintsShown((prev) => !prev)} variant="secondary">hints</Button>
+        </div>
+        {isHintsShown ? (
+          <p className="text-muted text-sm bg-surface my-3 px-3 py-2 border border-transparent rounded-2xl">
+            {currentPuzzle?.hint}
+          </p>
+        ) : null}
+      </div>
+    )}
+    </div>
+  )
 }
