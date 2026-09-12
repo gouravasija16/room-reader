@@ -3,7 +3,6 @@ import { sampleRooms } from "../../data/sampleRooms"
 import { useEffect, useState } from "react"
 import Button from "../shared/Button"
 import useTimer from "../shared/useTimer"
-import Confetti from "react-confetti"
 
 export default function Gameplay() {
   const navigate = useNavigate()
@@ -13,6 +12,7 @@ export default function Gameplay() {
   const [answer, setAnswer] = useState("")
   const [feedback, setfeedback] = useState("")
   const [isHintsShown, setIsHintsShown] = useState(false)
+  const [count,setCount]=useState(0)
 
   const currentPuzzle = room.puzzles[currentIndex]
   const isEscape = currentIndex >= room.puzzles.length
@@ -35,23 +35,25 @@ export default function Gameplay() {
       setfeedback("Not quite,try again!")
     }
   }
-
+  function handleHints() {
+    setCount(count + 1)
+    setIsHintsShown((prev) => !prev)
+  }
   useEffect(() => {
     if (isEscape) {
       navigate(`/rooms/${roomId}/results`, {
-        state: { time, roomTitle: room.title, isEscape },
+        state: {
+          time,
+          isEscape,
+          puzzleCount: room.puzzles.length,
+          Count: count,
+        },
       })
     }
-  }, [isEscape, navigate, roomId, room.title, time])
+  }, [isEscape, navigate, roomId, count, room.puzzles.length, time])
 
   return (
-    <div className="bg-elevated px-6 py-7 border border-border rounded-2xl m-8 "> {isEscape ? (
-      <div className="flex flex-col justify-center items-center">
-        <p className="text-3xl font-bold text-accent tracking-wide font-sans text-center">You Escaped!🎉</p>
-        <Confetti width={window.innerWidth} height={window.innerHeight} />
-      </div>
-    ) : (
-      <div>
+    <div className="bg-elevated px-6 py-7 border border-border rounded-2xl m-8 "> 
         <div className="flex justify-between items-center mb-5 font-serif gap-3 ">
           <h2 className="text-text text-3xl font-bold ">{room.title}</h2>
           <Button variant="primary" onClick={() => navigate(`/rooms/${roomId}`)}>Back to Room</Button>
@@ -70,7 +72,7 @@ export default function Gameplay() {
         </form>
         {feedback && <p className="text-red-500 tracking-wide">{feedback}</p>}
         <div className="mt-5">
-          <Button onClick={() => setIsHintsShown((prev) => !prev)} variant="secondary">hints</Button>
+          <Button onClick={handleHints} variant="secondary">hints</Button>
         </div>
         {isHintsShown ? (
           <p className="text-muted text-sm bg-surface my-3 px-3 py-2 border border-transparent rounded-2xl">
@@ -78,7 +80,5 @@ export default function Gameplay() {
           </p>
         ) : null}
       </div>
-    )}
-    </div>
   )
 }

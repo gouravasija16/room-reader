@@ -7,6 +7,7 @@ import MyRooms from "./components/pages/MyRooms.jsx"
 import CreateRoom from "./components/pages/CreateRoom.jsx"
 import RoomDetails from "./components/pages/RoomDetails.jsx"
 import Gameplay from "./components/pages/Gameplay.jsx"
+import Results from "./components/pages/Results.jsx"
 function App() {
   return (
     <div className="bg-background text-text">
@@ -19,7 +20,7 @@ function App() {
         <Route path="/create" element={<CreateRoom />} />
         <Route path="/rooms/:roomId" element={<RoomDetails />}/>
         <Route path="rooms/:roomId/play" element={<Gameplay />}/>
-        <Route path="/rooms/:roomId/results"/>
+        <Route path="/rooms/:roomId/results" element={<Results />}/>
       </Routes>
       </div>
       <Footer/>

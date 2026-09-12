@@ -9,7 +9,7 @@ export default function Footer(){
               <Link to="/myrooms">MyRooms</Link>
               <Link to="/create">CreateRoom</Link>
             </div>
-            <p className="text-center text-medium font-normal">© 2026 Room Reader. All rights reserved</p>
+            <p className="text-center font-normal">© 2026 Room Reader. All rights reserved</p>
         </footer>
     )
 }
