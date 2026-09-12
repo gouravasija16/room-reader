@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-export default function useTimer(isRunning){
-    const [timer,setTimer]=useState(0)
-    useEffect(()=>{
-        const timerStart=setInterval(()=>setTimer(prev=>prev+1),1000)
-        return ()=>clearInterval(timerStart)
-    },[isRunning])
-    const minutes = Math.floor(timer / 60)
-    const seconds = timer % 60
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
+import formatTime from "../../utils/formatTime";
 
-    return `${formattedMinutes}:${formattedSeconds}`
+export default function useTimer(isRunning) {
+    const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+        if (!isRunning) return;
+        
+        const timerStart = setInterval(() => setTimer(prev => prev + 1), 1000);
+        return () => clearInterval(timerStart);
+    }, [isRunning]);
+
+    return { seconds: timer, formatted: formatTime(timer) };
 }

@@ -3,7 +3,6 @@ import { sampleRooms } from "../../data/sampleRooms"
 import { useEffect, useState } from "react"
 import Button from "../shared/Button"
 import useTimer from "../shared/useTimer"
-
 export default function Gameplay() {
   const navigate = useNavigate()
   const { roomId } = useParams()
@@ -16,14 +15,13 @@ export default function Gameplay() {
 
   const currentPuzzle = room.puzzles[currentIndex]
   const isEscape = currentIndex >= room.puzzles.length
-  const time = useTimer(!isEscape)
+  const { formatted: time ,seconds } = useTimer(!isEscape)
 
   function HandleAnswer(e) {
     e.preventDefault()
     console.log(answer, currentPuzzle.answer)
     const isCorrect = answer.toLowerCase().trim() === currentPuzzle?.answer.toLowerCase().trim()
     console.log(isCorrect)
-
     if (isCorrect) {
       console.log("Advancing")
       setCurrentIndex((prev) => prev + 1)
@@ -44,13 +42,14 @@ export default function Gameplay() {
       navigate(`/rooms/${roomId}/results`, {
         state: {
           time,
+          seconds,
           isEscape,
           puzzleCount: room.puzzles.length,
           Count: count,
         },
       })
     }
-  }, [isEscape, navigate, roomId, count, room.puzzles.length, time])
+  }, [isEscape, navigate, roomId, count, room.puzzles.length, time,seconds])
 
   return (
     <div className="bg-elevated px-6 py-7 border border-border rounded-2xl m-8 "> 
