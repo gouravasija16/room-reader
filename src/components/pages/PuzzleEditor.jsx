@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useParams,useNavigate } from "react-router-dom"
 import { useContext,useReducer } from "react"
 import { RoomContext } from "../context/RoomContext"
 import Button from "../shared/Button"
 export default function PuzzleEditor(){
 const {puzzleId}=useParams()
-const {room}=useContext(RoomContext)
+const {room,roomId,Myrooms,setMyrooms}=useContext(RoomContext)
+const navigate=useNavigate()
 const isNew=puzzleId==='new'
 const existingPuzzle=isNew ? null :room.puzzles.find(p=>p.id===puzzleId)
 const initialState={
@@ -31,17 +32,34 @@ function reducer (state,action){
      }
 }
 function SaveHandler(){
-    
+    const puzzleObject={
+        puzzleId:Date.now().toString,
+        question:state.question,
+        answer:state.answer,
+        hint:state.hint
+    }
+     const updatedRoom= isNew 
+     ? {...room,puzzles:[...room.puzzles,puzzleObject]}
+     : room.puzzles.map(p=>p.id===puzzleId ? puzzleObject : p)
+
+     setMyrooms(...Myrooms,updatedRoom)
+    navigate(`/rooms/${roomId}/edit`)
 }
     return(
-        <form onSubmit={SaveHandler}>
-            <label >Question</label>
-            <input value={state?.question} onChange={(e)=>dispatch({type:ACTIONS.SET_QUESTION,payload:e.target.value})}></input>
-            <label>Answer</label>
-            <input value={state?.answer}  onChange={(e)=>dispatch({type:ACTIONS.SET_ANSWER,payload:e.target.value})}></input>
-            <label>Hint</label>
-            <input value={state?.hint}  onChange={(e)=>dispatch({type:ACTIONS.SET_HINT,payload:e.target.value})} placeholder="Hint"></input>
+        <section className="bg-elevated px-6 py-4 border border-border rounded-lg">
+        <h2 className="text-2xl font-bold text-text mb-4">{isNew ? 'Add New Puzzle' : 'Edit Puzzle'}</h2>
+        <form onSubmit={SaveHandler} className="flex flex-col gap-4">
+            <label className="text-text  text-2xl">Question</label>
+            <input value={state?.question} onChange={(e)=>dispatch({type:ACTIONS.SET_QUESTION,payload:e.target.value})} className="bg-surface border border-border rounded-2xl py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 capitalize" placeholder="The more of me you take, the more you leave behind. What am I?"></input>
+
+            <label className="text-text text-2xl ">Answer</label>
+            <input value={state?.answer}  onChange={(e)=>dispatch({type:ACTIONS.SET_ANSWER,payload:e.target.value})} className="bg-surface border border-border rounded-2xl py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your answer here"></input>
+
+            <label className="text-text text-2xl ">Hint</label>
+            <input value={state?.hint}  onChange={(e)=>dispatch({type:ACTIONS.SET_HINT,payload:e.target.value})} placeholder="Look down at your feet while walking" className="bg-surface border border-border rounded-2xl py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"></input>
+
             <Button variant="primary">Save</Button>
         </form>
+        </section>
     )
 }
