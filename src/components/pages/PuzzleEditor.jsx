@@ -4,7 +4,7 @@ import { RoomContext } from "../context/RoomContext"
 import Button from "../shared/Button"
 export default function PuzzleEditor(){
 const {puzzleId}=useParams()
-const {room,roomId,Myrooms,setMyrooms}=useContext(RoomContext)
+const {room,roomId,myRooms,setMyRooms}=useContext(RoomContext)
 const navigate=useNavigate()
 const isNew=puzzleId==='new'
 const existingPuzzle=isNew ? null :room.puzzles.find(p=>p.id===puzzleId)
@@ -31,18 +31,22 @@ function reducer (state,action){
             return state
      }
 }
-function SaveHandler(){
+function SaveHandler(e){
+    console.log("puzzled:",puzzleId,"isNew:",isNew)
+    console.log("room:",room)
+    e.preventDefault()
     const puzzleObject={
-        puzzleId:Date.now().toString,
+        id:Date.now().toString(),
         question:state.question,
         answer:state.answer,
         hint:state.hint
     }
      const updatedRoom= isNew 
      ? {...room,puzzles:[...room.puzzles,puzzleObject]}
-     : room.puzzles.map(p=>p.id===puzzleId ? puzzleObject : p)
+     : {...room,puzzles:room.puzzles.map(p=>p.id===puzzleId ? puzzleObject : p)}
 
-     setMyrooms(...Myrooms,updatedRoom)
+    const updatedRooms=myRooms.map(r=>r.id===roomId ? updatedRoom : r)
+    setMyRooms( updatedRooms)
     navigate(`/rooms/${roomId}/edit`)
 }
     return(

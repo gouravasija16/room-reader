@@ -11,6 +11,12 @@ export default function RoomEditor() {
     return <p>Room not found</p>;
   }
   const puzzles = room.puzzles ?? [];
+  function handleDeletePuzzle(puzzleId){
+    if(!window.confirm("Delete this puzzle?")) return 
+    const updatedRoom={...room,puzzles:room.puzzles.filter(p=>p.id!==puzzleId)}
+    const updatedRooms= myRooms.map(r=>r.id=== roomId ?updatedRoom : r)
+    setMyRooms(updatedRooms)
+  }
   return (
     <RoomContext.Provider value={{room,roomId,myRooms,setMyRooms}} >
     <section className="bg-background px-6 py-4">
@@ -25,9 +31,12 @@ export default function RoomEditor() {
         {puzzles.length ? (
           <div className="flex flex-col gap-3">
             {puzzles.map((puzzle) => (
-              <Link key={puzzle.id} to={`/rooms/${roomId}/edit/puzzles/${puzzle.id}`} className="px-3 py-2 border rounded-md hover:bg-surface text-text ">
-                {puzzle.question || 'Untitled puzzle'}
-              </Link>
+              <div key={puzzle.id} className="flex gap-4">
+                <Link to={`/rooms/${roomId}/edit/puzzles/${puzzle.id}`} className="px-3 py-2 border rounded-md hover:bg-surface text-text truncate">
+                  {puzzle.question || 'Untitled puzzle'}
+                </Link>
+                <Button  variant="secondary" onClick={() => handleDeletePuzzle(puzzle.id)}>delete</Button>
+              </div>
             ))}
           </div>
         ) : (
