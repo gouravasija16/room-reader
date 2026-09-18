@@ -45,7 +45,7 @@ export default function Preview(){
                <div>
                { puzzleEnd ?
                 <div className="flex flex-col gap-5">
-                    <h2 className="text-text text-2xl font-bold">Preview Complete!</h2>
+                    <h2 className="text-accent text-2xl font-bold">Preview Complete!</h2>
                     <p className="text-muted text-lg ">You solved all {room.puzzles.length} puzzles</p>
                     <Button variant="primary" onClick={handlePlay}>Play Again</Button>
                 </div>
