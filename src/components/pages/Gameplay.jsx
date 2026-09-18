@@ -67,9 +67,9 @@ export default function Gameplay() {
             placeholder="Enter your answer..."
             className="border border-accent rounded-2xl focus:border-accent text-muted text-lg  w-100 md:w-200  h-auto px-2 mr-6 "
           ></input>
+           {feedback && <p className="text-red-500 tracking-wide mb-5">{feedback}</p>}
           <Button variant="primary" className="w-20 h-auto">Submit</Button>
         </form>
-        {feedback && <p className="text-red-500 tracking-wide">{feedback}</p>}
         <div className="mt-5">
           <Button onClick={handleHints} variant="secondary">hints</Button>
         </div>

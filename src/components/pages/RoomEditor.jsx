@@ -22,6 +22,7 @@ export default function RoomEditor() {
     <section className="bg-background px-6 py-4">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold text-text capitalize" >Editing: {room.title}</h2>
+        <Button variant="secondary" onClick={()=>navigate(`/rooms/${roomId}/edit/preview`)}>Preview</Button>
         <Button variant="primary">Publish</Button>
       </div>
       <div className="flex gap-6">
