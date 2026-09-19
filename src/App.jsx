@@ -31,7 +31,6 @@ function App() {
         <Route path="puzzles/:puzzleId" element={<PuzzleEditor/>} />
         <Route path="preview" element={<Preview/>} />
         <Route/>
-
         </Route>
       </Routes>
       </div>
