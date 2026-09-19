@@ -8,6 +8,8 @@ export default function Navbar(){
               <Link to="/rooms" className="hover:text-accent">Rooms</Link>
               <Link to="/myrooms" className="hover:text-accent">MyRooms</Link>
               <Link to="/create" className="hover:text-accent">CreateRoom</Link>
+              <Link to="/history" className="hover:text-accent">History</Link>
+              <Link to="/settings" className="hover:text-accent">Settings</Link>
             </div>
         </nav>
     )

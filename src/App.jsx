@@ -12,7 +12,8 @@ import RoomEditor from "./components/pages/RoomEditor.jsx"
 import RoomSettingsOverview from "./components/pages/RoomSettingsOverview.jsx"
 import PuzzleEditor from "./components/pages/PuzzleEditor.jsx"
 import Preview from "./components/pages/Preview.jsx"
-
+import Settings from "./components/settings/Settings.jsx"
+import History from "./components/history/History.jsx"
 function App() {
   return (
     <div className="bg-background text-text">
@@ -30,8 +31,9 @@ function App() {
         <Route index element={<RoomSettingsOverview />} />
         <Route path="puzzles/:puzzleId" element={<PuzzleEditor/>} />
         <Route path="preview" element={<Preview/>} />
-        <Route/>
         </Route>
+        <Route path="/history" element={<History/>}/>
+        <Route path="/settings" element={<Settings />}/>
       </Routes>
       </div>
       <Footer/>

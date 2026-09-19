@@ -3,10 +3,13 @@ import { sampleRooms } from "../../data/sampleRooms"
 import { useEffect, useState } from "react"
 import Button from "../shared/Button"
 import useTimer from "../shared/useTimer"
+import useLocalStorage from "../shared/useLocalStorage"
 export default function Gameplay() {
   const navigate = useNavigate()
   const { roomId } = useParams()
-  const room = sampleRooms.find((sampleRoom) => sampleRoom.id === roomId)
+  const [myRooms]=useLocalStorage('my-rooms',[])
+  const allRooms=[...sampleRooms,...myRooms]
+  const room = allRooms.find(r => r.id === roomId)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState("")
   const [feedback, setfeedback] = useState("")

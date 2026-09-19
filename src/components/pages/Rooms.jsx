@@ -1,16 +1,17 @@
 import { sampleRooms } from "../../data/sampleRooms"
 import RoomGrid from "../shared/RoomGrid"
 import { useSearchParams } from "react-router-dom"
+import useLocalStorage from "../shared/useLocalStorage"
 export default function Rooms() {
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("search") || ""
     const difficultyFilter = searchParams.get("difficulty") || "All"
-
+    const [myRooms]=useLocalStorage('my-rooms',[])
+    const allRooms=[...sampleRooms,...myRooms]
     const handleRoomSearch = (event) => {
         const value = event.target.value
         setSearchParams((prev) => {
             const next = new URLSearchParams(prev)
-
             if (value) {
                 next.set("search", value)
             } else {
@@ -61,7 +62,7 @@ export default function Rooms() {
             </select>
         </div>
             <RoomGrid
-                rooms={sampleRooms.filter((room) =>
+                rooms={allRooms.filter((room) =>
                     room.title.toLowerCase().includes(typeFilter.toLowerCase()) &&
                     (difficultyFilter === "All" || room.difficulty === difficultyFilter)
                 )}
