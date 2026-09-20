@@ -14,9 +14,30 @@ import PuzzleEditor from "./components/pages/PuzzleEditor.jsx"
 import Preview from "./components/pages/Preview.jsx"
 import Settings from "./components/settings/Settings.jsx"
 import History from "./components/history/History.jsx"
+import ambientMusic from "./assets/ambient-music.mp3"
+import useLocalStorage from "./components/shared/useLocalStorage.jsx"
+import { useRef,useEffect } from "react"
 function App() {
+  const audioRef=useRef(null)
+  const [isMuted,setIsMuted] = useLocalStorage('music-muted', true)
+  const [reducedMotion]=useLocalStorage('reduced-motion',false)
+  useEffect(()=>{
+    if(!isMuted){
+      audioRef.current?.play()
+    }else{
+      audioRef.current?.pause()
+    }
+  },[isMuted])
+  useEffect(()=>{
+    if(reducedMotion){
+      document.documentElement.classList.add('reduce-motion')
+    }else{
+       document.documentElement.classList.remove('reduce-motion')
+    }
+  },[reducedMotion])
   return (
     <div className="bg-background text-text">
+    <audio  ref={audioRef} src={ambientMusic}  loop muted={isMuted}  />
       <Navbar />
        <div >
       <Routes>
@@ -33,7 +54,7 @@ function App() {
         <Route path="preview" element={<Preview/>} />
         </Route>
         <Route path="/history" element={<History/>}/>
-        <Route path="/settings" element={<Settings />}/>
+        <Route path="/settings" element={<Settings isMuted={isMuted} setIsMuted={setIsMuted} />}/>
       </Routes>
       </div>
       <Footer/>

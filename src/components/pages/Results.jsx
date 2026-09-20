@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import formatTime from "../../utils/formatTime"
 export default function Results(){
     const {roomId}=useParams()
+    const [reducedMotion]=useLocalStorage('reduced-motion',false)
     const location=useLocation()
     const [bestTime,setBestTime]=useLocalStorage(`best-time-${roomId}`,null)
     const {time,puzzleCount,Count,seconds}=location.state
@@ -28,7 +29,7 @@ export default function Results(){
         <section className="flex flex-col justify-center items-center min-h-screen  tracking-wider">
            <h2 className="text-3xl font-bold text-accent tracking-wide font-sans text-center my-1">You Escaped! 🎉 </h2>
            <p className="text-muted text-lg my-3">Great job! You solved all the puzzles.</p>
-           <Confetti width={window.innerWidth} height={window.innerHeight} />
+           { !reducedMotion && <Confetti width={window.innerWidth} height={window.innerHeight} />}
               <h3 className="text-sm text-muted">Your Time</h3>
               <p className="text-accent text-4xl font-bold" >{time}</p>
               {bestTime && <p className="text-muted text-sm ">Best Time: {formatTime(bestTime)}</p>}

@@ -8,3 +8,7 @@
   --color-border:#272D33;
   --color-accent:#D4A24C;
 }
+.reduce-motion *{
+  transition:none !important;
+  animation:none !important;
+}
