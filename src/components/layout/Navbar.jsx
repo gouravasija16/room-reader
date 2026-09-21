@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import {
-    FaBars,
-    FaTimes,
-    FaHome,
-    FaDoorOpen,
-    FaUserShield,
-    FaPlusCircle,
-    FaHistory,
-    FaCog
-} from "react-icons/fa"
+import {Home,DoorOpen,FolderOpen,Clock,Settings,Menu,X,PlusCircle,User2 } from "lucide-react"
 export default function Navbar(){
     const [isOpen,setIsOpen]=useState(false)   
     return(
@@ -21,7 +12,7 @@ export default function Navbar(){
                 onClick={() => setIsOpen((open) => !open)}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
             >
-                {isOpen ? <FaTimes /> : <FaBars />}
+                {isOpen ? <X /> : <Menu /> }
             </button>
             <div className="hidden md:flex gap-4 justify-end">
               <Link to="/" className="hover:text-accent">Home</Link>
@@ -30,32 +21,37 @@ export default function Navbar(){
               <Link to="/create" className="hover:text-accent">CreateRoom</Link>
               <Link to="/history" className="hover:text-accent">History</Link>
               <Link to="/settings" className="hover:text-accent">Settings</Link>
+              <Link to="/login" className="hover:text-accent">Login</Link>
             </div>
             {isOpen && (
                 <div className="absolute top-full left-0 w-full bg-surface border-b border-border flex flex-col px-8 gap-4 md:hidden shadow-lg z-50">
                    <Link to="/" onClick={()=>setIsOpen(false)} className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
-                       <FaHome  className="text-xl shrink-0"/> 
+                       <Home size={18}  className="text-xl shrink-0"/> 
                        <span className="text-base font-medium">Home</span>
                     </Link>
                    <Link to="/rooms" onClick={()=>setIsOpen(false)} className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
-                        <FaDoorOpen className="text-xl shrink-0" /> 
+                        <DoorOpen size={18} className="text-xl shrink-0" /> 
                         <span>Rooms</span>
                    </Link>
                    <Link to="/myrooms" onClick={()=>setIsOpen(false)} className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
-                         <FaUserShield className="text-xl shrink-0" /> 
+                         <FolderOpen size={18} className="text-xl shrink-0" /> 
                          <span>MyRooms</span>
                    </Link>
                    <Link to="/create" onClick={()=>setIsOpen(false)} className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
-                         <FaPlusCircle className="text-xl shrink-0" /> 
+                         <PlusCircle size={18} className="text-xl shrink-0" /> 
                          <span>CreateRoom</span>
                    </Link>
                    <Link to="/history" onClick={()=>setIsOpen(false)}  className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
-                         <FaHistory className="text-xl shrink-0" /> 
+                         <Clock size={18} className="text-xl shrink-0" /> 
                          <span>History</span>
                    </Link>
                    <Link to="/settings" onClick={()=>setIsOpen(false)} className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
-                            <FaCog className="text-xl shrink-0" /> 
+                            <Settings size={18} className="text-xl shrink-0" /> 
                             <span>Settings</span>
+                   </Link>
+                   <Link to="/login" onClick={()=>setIsOpen(false)} className="hover:text-accent flex flex-row items-center justify-start gap-2 py-2 w-full text-left">
+                            <User2 size={18} className="text-xl shrink-0" /> 
+                            <span>Login</span>
                    </Link>
                 </div>
             )}

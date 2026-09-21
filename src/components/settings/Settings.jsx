@@ -1,4 +1,4 @@
-
+import {Volume2,VolumeX,Zap,Trash2} from "lucide-react"
 import useLocalStorage from "../shared/useLocalStorage.jsx"
 import Button from "../shared/Button.jsx"
 export default function Settings({ isMuted, setIsMuted }){
@@ -16,6 +16,7 @@ export default function Settings({ isMuted, setIsMuted }){
                 <h3 className="text-lg font-semibold">Background Music</h3>
                 <div>
                      <Button variant="primary" onClick={()=>setIsMuted(!isMuted)}>
+                    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
                     {isMuted ? "Unmute Music" : "Mute Music"}
                 </Button>
                 </div> 
@@ -23,13 +24,17 @@ export default function Settings({ isMuted, setIsMuted }){
             <div className="flex flex-col gap-4">
                 <h3 className="text-lg font-semibold">Motion</h3>
             <div>
-                <Button variant="secondary" onClick={()=>setReducedMotion(!reducedMotion)} >{reducedMotion ? 'Enable Animations' : 'Reduce Motion'}</Button>
+                <Button variant="secondary" onClick={()=>setReducedMotion(!reducedMotion)} >
+                <Zap size={20} />
+                {reducedMotion ? 'Enable Animations' : 'Reduce Motion'}</Button>
             </div>
             </div>
              <div className="flex flex-col gap-4">
                 <h3 className="text-lg font-semibold">Clear Data</h3>
              <div>
-            <Button variant="secondary" onClick={handleClearData}>Clear All local Data</Button>
+            <Button variant="secondary" onClick={handleClearData}>
+            <Trash2 size={20} />
+            Clear All local Data</Button>
             </div>
             </div>
             <p className="text-sm text-muted">Note: This will reduce or disable animations in the app, including confetti and other visual effects.</p>
