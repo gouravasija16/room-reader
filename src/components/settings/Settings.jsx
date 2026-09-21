@@ -18,15 +18,22 @@ export default function Settings({ isMuted, setIsMuted }){
                      <Button variant="primary" onClick={()=>setIsMuted(!isMuted)}>
                     {isMuted ? "Unmute Music" : "Mute Music"}
                 </Button>
-                </div>
-               
+                </div> 
              </div>
-             <div>
-            <Button variant="secondary" onClick={handleClearData}>Clear All local Data</Button>
-            </div>
+            <div className="flex flex-col gap-4">
+                <h3 className="text-lg font-semibold">Motion</h3>
             <div>
                 <Button variant="secondary" onClick={()=>setReducedMotion(!reducedMotion)} >{reducedMotion ? 'Enable Animations' : 'Reduce Motion'}</Button>
             </div>
+            </div>
+             <div className="flex flex-col gap-4">
+                <h3 className="text-lg font-semibold">Clear Data</h3>
+             <div>
+            <Button variant="secondary" onClick={handleClearData}>Clear All local Data</Button>
+            </div>
+            </div>
+            <p className="text-sm text-muted">Note: This will reduce or disable animations in the app, including confetti and other visual effects.</p>
+            <p className="text-sm text-muted">This setting is also saved in local storage, so it will persist across sessions.</p>
             <p className="text-lg text-muted tracking-wide">More settings coming soon.</p>
         </div>
        
