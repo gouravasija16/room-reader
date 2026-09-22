@@ -1,11 +1,12 @@
-import useLocalStorage from "./components/shared/useLocalStorage"
-export function useAuth() {
-    const [islogin,setIslogin] = useLocalStorage('islogin', false);
-    const login = () => {
-        setIslogin(true);
-    }
-    const logout = () => {
-        setIslogin(false);
-    }
-    return { islogin, login, logout };
+
+export function login(name){
+    localStorage.setItem('is-logged-in',JSON.stringify(true))
+    localStorage.setItem('user-name',JSON.stringify(name))
+}
+export function logout(){
+    localStorage.removeItem('is-logged-in')
+    localStorage.removeItem('user-name')
+}
+export function isAuthenticated(){
+    return JSON.parse(localStorage.getItem('is-logged-in')|| 'false')
 }

@@ -1,6 +1,29 @@
 import {Form} from 'react-router-dom'
 import Button from '../shared/Button'
 import { useActionData } from 'react-router-dom'
+import {isAuthenticated,login} from "../../auth.jsx"
+import { redirect } from 'react-router-dom';
+
+// The loader is intentionally exported alongside this route component for the router.
+// eslint-disable-next-line react-refresh/only-export-components
+export async function requireAuthLoader(){
+    if (!isAuthenticated()) return redirect('/login')
+        return null
+}
+// eslint-disable-next-line react-refresh/only-export-components
+export async function loginAction({ request }) {
+    const url=new URL(request.url)
+    console.log(url.pathname)
+    const formData=await request.formData()
+    const email =formData.get("email")
+    const password=formData.get("password")
+    if (!email  || !password )
+        return {
+           error: "Please enter email and password"
+    }
+    login()
+    return redirect("/")
+}
 export  default function  Login() {
     const data=useActionData()
     return(
