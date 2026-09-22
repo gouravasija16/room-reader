@@ -24,8 +24,8 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="rooms/:roomId/play" element={<Gameplay />}/>
         <Route path="/rooms/:roomId/results" element={<Results />}/>
         <Route path="/myrooms" element={<MyRooms />}  loader={requireAuthLoader}/> 
-        <Route path="/create" element={<CreateRoom />}  loader={ requireAuthLoader} />
-        <Route path="/rooms/:roomId/edit" element={<RoomEditor/>}  loader={ requireAuthLoader} >
+        <Route path="/create" element={<CreateRoom />} loader={requireAuthLoader} />
+        <Route path="/rooms/:roomId/edit" element={<RoomEditor/>} loader={requireAuthLoader} >
         <Route index element={<RoomSettingsOverview />} />
         <Route path="puzzles/:puzzleId" element={<PuzzleEditor/>} />
         <Route path="preview" element={<Preview/>} />
