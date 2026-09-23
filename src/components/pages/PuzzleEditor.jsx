@@ -1,5 +1,5 @@
 import { useParams,useNavigate } from "react-router-dom"
-import { useContext,useEffect,useReducer } from "react"
+import { useContext,useEffect,useReducer,useState } from "react"
 import { RoomContext } from "../context/RoomContext"
 import Button from "../shared/Button"
 import useFetch from "../shared/useFetch"
@@ -7,6 +7,7 @@ export default function PuzzleEditor(){
     const {data,loading,error,fetchRiddle}=useFetch()
     const {puzzleId}=useParams()
     const {room,roomId,myRooms,setMyRooms}=useContext(RoomContext)
+    const [formError,setFormError]=useState("")
     const navigate=useNavigate()
     const isNew=puzzleId==='new'
     const existingPuzzle=isNew ? null :room.puzzles.find(p=>p.id===puzzleId)
@@ -26,8 +27,8 @@ useEffect(()=>{
     if(data){
         console.log(data[0]?.question)
         console.log(data[0]?.answer)
-        dispatch({type:ACTIONS.SET_QUESTION,payload:data[0]?.question})
-        dispatch({type:ACTIONS.SET_ANSWER,payload:data[0]?.answer})
+        dispatch({type:'setQuestion',payload:data[0]?.question})
+        dispatch({type:'setAnswer',payload:data[0]?.answer})
     }
 },[data])
 function reducer (state,action){
@@ -46,11 +47,20 @@ function SaveHandler(e){
     console.log("puzzled:",puzzleId,"isNew:",isNew)
     console.log("room:",room)
     e.preventDefault()
+
+    const question=state.question.trim()
+    const answer=state.answer.trim()
+    const hint=state.hint.trim()
+    if(!question || !answer || !hint){
+        setFormError("Enter a question, answer, and hint before saving.")
+        return
+    }
+    setFormError("")
     const puzzleObject={
         id:Date.now().toString(),
-        question:state.question,
-        answer:state.answer,
-        hint:state.hint
+        question,
+        answer,
+        hint
     }
      const updatedRoom= isNew 
      ? {...room,puzzles:[...room.puzzles,puzzleObject]}
@@ -66,16 +76,17 @@ function SaveHandler(e){
         <div className="m-4">
             <Button variant="secondary" onClick={fetchRiddle} disabled={loading}>{loading ? 'fetching':'Suggest a Puzzle'}</Button>
         </div>
-        {error && <p className="text-red-400 text-sm">{error}</p>}
-        <form onSubmit={SaveHandler} className="flex flex-col gap-4">
-            <label className="text-text  text-2xl">Question</label>
-            <input value={state?.question} onChange={(e)=>dispatch({type:ACTIONS.SET_QUESTION,payload:e.target.value})} className="bg-surface border border-border rounded-2xl py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 capitalize" placeholder="The more of me you take, the more you leave behind. What am I?"></input>
+        {error && <p role="alert" className="text-red-400 text-sm">{error}</p>}
+        {formError && <p role="alert" className="text-red-400 text-sm">{formError}</p>}
+        <form onSubmit={SaveHandler} className="flex flex-col gap-3">
+            <label htmlFor="puzzle-question" className="text-lg font-medium text-text">Question</label>
+            <input id="puzzle-question" value={state?.question} onChange={(e)=>dispatch({type:ACTIONS.SET_QUESTION,payload:e.target.value})} className="w-full rounded-xl border border-border bg-surface px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="The more of me you take, the more you leave behind. What am I?" />
 
-            <label className="text-text text-2xl ">Answer</label>
-            <input value={state?.answer}  onChange={(e)=>dispatch({type:ACTIONS.SET_ANSWER,payload:e.target.value})} className="bg-surface border border-border rounded-2xl py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your answer here"></input>
+            <label htmlFor="puzzle-answer" className="text-lg font-medium text-text">Answer</label>
+            <input id="puzzle-answer" value={state?.answer}  onChange={(e)=>dispatch({type:ACTIONS.SET_ANSWER,payload:e.target.value})} className="w-full rounded-xl border border-border bg-surface px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Your answer here" />
 
-            <label className="text-text text-2xl ">Hint</label>
-            <input value={state?.hint}  onChange={(e)=>dispatch({type:ACTIONS.SET_HINT,payload:e.target.value})} placeholder="Look down at your feet while walking" className="bg-surface border border-border rounded-2xl py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"></input>
+            <label htmlFor="puzzle-hint" className="text-lg font-medium text-text">Hint</label>
+            <input id="puzzle-hint" value={state?.hint}  onChange={(e)=>dispatch({type:ACTIONS.SET_HINT,payload:e.target.value})} placeholder="Look down at your feet while walking" className="w-full rounded-xl border border-border bg-surface px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
 
             <Button variant="primary">Save</Button>
         </form>

@@ -134,7 +134,7 @@ export default function Gameplay() {
                 </Button>
               </div>
               {feedback && (
-                <p role="alert" className="mt-3 text-sm font-medium text-red-400">
+                <p role="alert" className=" feedback-enter mt-3 text-sm font-medium text-red-400">
                   {feedback}
                 </p>
               )}

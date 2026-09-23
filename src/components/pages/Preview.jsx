@@ -38,8 +38,8 @@ export default function Preview(){
   }
  
     return(
-       <section className="bg-elevated px-6 py-7 border border-border rounded-2xl m-8 "> 
-               <div className="flex justify-between items-center mb-5 font-serif gap-3  ">
+       <section className="mx-4 my-6 w-auto rounded-2xl border border-border bg-elevated px-4 py-5 sm:mx-auto sm:my-8 sm:max-w-4xl sm:px-8 sm:py-7">
+               <div className="mb-5 flex items-center gap-3 font-serif">
                  <Button variant="secondary" onClick={() => navigate(`/rooms/${roomId}/edit`)}>Exit Preview</Button>
                </div>
                <div>
@@ -52,17 +52,17 @@ export default function Preview(){
                 :
                 <div>
                <p className="text-muted  text-sm font-sans">Puzzle {currentIndex + 1} of {room.puzzles.length}</p>
-               <h2 className="text-2xl text-bold tracking-wide font-serif text-amber-50 my-3">{currentPuzzle?.question}</h2>
-               <form onSubmit={HandleAnswer}>
+               <h2 className="my-3 text-xl font-bold tracking-wide font-serif text-amber-50 sm:text-2xl">{currentPuzzle?.question}</h2>
+               <form onSubmit={HandleAnswer} className="flex flex-col gap-3 sm:flex-row sm:items-start">
                  <input
                    value={answer}
                    onChange={(e) => setAnswer(e.target.value)}
                    placeholder="Enter your answer..."
-                   className="border border-accent rounded-2xl focus:border-accent text-muted text-lg  w-100 md:w-200  h-auto px-2 mr-6 "
+                   className="min-w-0 flex-1 rounded-2xl border border-accent px-3 py-2 text-lg text-muted focus:border-accent"
                  ></input>
-                  {feedback && <p className="text-red-500 tracking-wide mb-5">{feedback}</p>}
-                 <Button variant="primary" className="w-20 h-auto">Submit</Button>
+                  <Button variant="primary" className="sm:w-auto">Submit</Button>
                </form>
+                 {feedback && <p className="mt-2 text-red-500 tracking-wide">{feedback}</p>}
                <div className="mt-5">
                  <Button onClick={handleHints} variant="secondary">hints</Button>
                </div>

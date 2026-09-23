@@ -28,7 +28,7 @@ function App() {
     <div className="bg-background text-text">
     <audio  ref={audioRef} src={ambientMusic}  loop muted={isMuted}  autoPlay/>
       <Navbar />
-       <div >
+       <div className="page-enter" >
       <Outlet context={outletContext} />
        </div>
       <Footer/>

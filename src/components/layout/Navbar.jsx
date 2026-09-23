@@ -99,8 +99,7 @@ export default function Navbar() {
             </div>
 
             {isOpen && (
-                <div id="mobile-navigation" className="border-t border-border/70 bg-surface/95 px-5 pb-5 pt-3 shadow-2xl backdrop-blur-xl md:hidden">
-                    <div className="space-y-1">
+                <div id="mobile-navigation" className="mobile-menu-enter border-t border-border/70 bg-surface/95 px-5 pb-5 pt-3 shadow-2xl backdrop-blur-xl md:hidden">
                         {navigationItems.map((item) => (
                             <NavigationLink key={item.to} item={item} onClick={() => setIsOpen(false)} mobile />
                         ))}
@@ -114,7 +113,6 @@ export default function Navbar() {
                             <Plus size={17} strokeWidth={2.5} />
                             Create a room
                         </Link>
-                    </div>
                 </div>
             )}
         </nav>

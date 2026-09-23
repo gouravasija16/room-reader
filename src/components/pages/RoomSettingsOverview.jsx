@@ -14,23 +14,27 @@ export default function RoomSettingsOverview(){
         setMyRooms(updatedRooms)
     }
     return(
-       <section className=" font-sans  text-center m-4">
-                   <h2 className="text-center text-3xl text-accent text-bold mb-6">Room Settings</h2>
-               <form onSubmit={handleSave} className="flex flex-col gap-2 justify-center text-center items-center"> 
-                   <label className="text-muted text-lg ">Room title</label> 
+       <section className="mx-auto w-full max-w-2xl rounded-2xl border border-border bg-elevated p-5 font-sans text-center sm:p-8">
+                   <h2 className="mb-6 text-center text-2xl font-bold text-accent sm:text-3xl">Room Settings</h2>
+               <form onSubmit={handleSave} className="flex flex-col items-stretch gap-2 text-left">
+                   <label htmlFor="room-title" className="text-sm font-medium text-muted sm:text-base">Room title</label> 
                    <input
+                     id="room-title"
                      value={title}
-                     onChange={(e) => setTitle(e.target.value)}  className="bg-surface border border-border  px-4 py-2 rounded-xl text-text w-full max-w-md mx-auto h-auto text-center focus:border-accent mb-3 capitalize"
+                     onChange={(e) => setTitle(e.target.value)}  className="mb-3 h-11 w-full rounded-xl border border-border bg-surface px-4 py-2 text-text focus:border-accent capitalize"
                    /> 
-                   <label className="text-muted text-lg ">Description</label>
+                   <label htmlFor="room-description" className="text-sm font-medium text-muted sm:text-base">Description</label>
                    <textarea  value={description}
-                     onChange={(e) => setDescription(e.target.value)}  className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text w-full max-w-md mx-auto h-auto text-center mb-3 "
+                     id="room-description"
+                     rows="4"
+                     onChange={(e) => setDescription(e.target.value)}  className="mb-3 min-h-28 w-full resize-y rounded-xl border border-border bg-surface px-4 py-2 text-text focus:border-accent "
                    > </textarea>
                    <div>
+                     <label htmlFor="difficulty" className="mb-2 block text-sm font-medium text-muted sm:text-base">Difficulty</label>
                      <select
                        name="difficulty"
                        id="difficulty"
-                       className=" px-4 py-2 text-text block mx-auto w-full max-w-xs appearance-none rounded-md border border-gray-300 bg-elevated shadow-sm focus:border-accent focus:outline-none focus:ring-accent mb-3"
+                       className="mb-3 block w-full appearance-none rounded-md border border-border bg-surface px-4 py-2 text-text shadow-sm focus:border-accent focus:outline-none focus:ring-accent"
                        spellCheck="false"
                        value={difficulty}
                        onChange={(e) => setDifficulty(e.target.value)}
@@ -41,16 +45,17 @@ export default function RoomSettingsOverview(){
                        <option value="Hard">Hard</option>   
                      </select>
                    </div>
-                   <label className="text-muted text-lg ">Time Limit (minutes)</label>
+                   <label htmlFor="time-limit" className="text-sm font-medium text-muted sm:text-base">Time Limit (minutes)</label>
                    <input
+                     id="time-limit"
                      type="number"
                      value={timeLimit}
-                     onChange={(e) => setTimeLimit(e.target.value)}  className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text  block w-full max-w-xs mx-auto h-auto text-center mb-3"
+                     onChange={(e) => setTimeLimit(e.target.value)}  className="mb-3 block w-full rounded-xl border border-border bg-surface px-4 py-2 text-text focus:border-accent"
                    /> 
-                   <div className="mb-5">
+                   <div className="mt-2">
                    <Button variant="primary">Save Changes</Button>
                    </div>
                </form>
-               </section>
-    )
+            </section>
+     )
 }
