@@ -50,10 +50,10 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 z-50 border-b border-border/80 bg-background/85 text-text shadow-[0_8px_30px_rgba(0,0,0,0.16)] backdrop-blur-xl">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent" />
-            <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/70 to-transparent" />
+            <div className="mx-auto flex min-h-18 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
                 <Link to="/" className="group flex items-center gap-3" onClick={() => setIsOpen(false)}>
-                    <span className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-2xl bg-accent text-background shadow-[0_0_24px_rgba(212,162,76,0.2)] transition-transform duration-300 group-hover:rotate-[-6deg] group-hover:scale-105">
+                    <span className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-2xl bg-accent text-background shadow-[0_0_24px_rgba(212,162,76,0.2)] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
                         <span className="absolute -right-2 -top-2 h-6 w-6 rounded-full bg-white/30 blur-md" />
                         <Sparkles size={19} strokeWidth={2.4} />
                     </span>
