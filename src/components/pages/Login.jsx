@@ -34,7 +34,7 @@ export  default function  Login() {
         <Form method="post" replace className="flex flex-col gap-3 text-center">
            <input type="email" name="email" placeholder="email" className="bg-surface border border-border  px-4 py-2 rounded-xl text-text  mx-auto text-center focus:border-accent mb-3 "></input>
 
-           <input name="password" type="password" placeholder="Password" className="bg-surface border border-border  px-4 py-2 rounded-xl text-text mx-auto  text-center focus:border-accent mb-3 "></input>
+           <input name="password" type="password" placeholder="Password" className="bg-surface border border-border  px-4 py-2 rounded-xl text-text mx-auto  text-center focus:border-accent mb-3 w-auto "></input>
                      <Button variant="primary" type="submit" disabled={navigation.state === "submitting"}>
                          {navigation.state === "submitting" ? "Logging in" : "Login"}
                      </Button>

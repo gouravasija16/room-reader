@@ -3,7 +3,9 @@ import useLocalStorage from "../shared/useLocalStorage.jsx"
 import Button from "../shared/Button.jsx"
 import {logout} from  "../../auth.jsx"
 import { useNavigate } from "react-router-dom"
-export default function Settings({ isMuted, setIsMuted }){
+import { useOutletContext } from "react-router-dom"
+export default function Settings(){
+    const {isMuted,setIsMuted}=useOutletContext()
     console.log(isMuted)
     const [reducedMotion,setReducedMotion]=useLocalStorage('reduced-motion',false)
     const navigate=useNavigate()

@@ -39,12 +39,12 @@ export default function Rooms() {
     return (
         <section className='text-center px-8 py-5 bg-background'>
             <h2 className='text-4xl font-bold text-text mb-7'>Discover Rooms</h2>
-            <div className="flex gap-8 mb-6 ">
+            <div className="flex gap-6 mb-6 shadow-sm">
             <input
                 value={typeFilter}
                 onChange={handleRoomSearch}
                 placeholder="Search rooms..."
-                className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text w-250 h-auto"
+                className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text flex-1 min-w-0 "
             />
 
             <select
@@ -52,7 +52,7 @@ export default function Rooms() {
                 id="difficulty"
                 value={difficultyFilter}
                 onChange={handleDifficultyChange}
-                className="bg-surface border border-border px-4 py-2 rounded-lg text-text focus:border-accent"
+                className="bg-surface border border-border px-4 pr-8 py-2 rounded-lg text-text focus:border-accent  w-22 sm:w-44 text-sm"
                 spellCheck="false"
             >
                 <option value="All">All</option>

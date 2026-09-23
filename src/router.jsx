@@ -31,7 +31,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path="preview" element={<Preview/>} />
         </Route>
         <Route path="/history" element={<History/>}/>
-        <Route path="/settings" element={<Settings />}/>
+        <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} action={loginAction} />
         <Route path="*" element={<p>Page not found</p>} />
         </Route>

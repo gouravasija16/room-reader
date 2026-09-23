@@ -5,7 +5,7 @@ export default function HowItWorks(){
         {number:3,title:'Escape',text:'Check the final puzzle,beat the timer,and see how you rank'},
     ]
     return (
-        <section className="text-center  px-6 py-7 max-w-7.5xl">
+        <section className="text-center  px-6 py-7 max-w-7.5xl mx-auto">
             <h2 className="text-2xl font-semibold text-text mb-4">How it Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3 mx-5">
                 {steps.map(step => (
