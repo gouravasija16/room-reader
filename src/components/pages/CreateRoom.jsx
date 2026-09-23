@@ -31,23 +31,34 @@ export default function CreateRoom(){
     navigate(`/rooms/${newRoom.id}/edit`)
   }
     return(
-        <section className=" font-sans  text-center m-4">
-            <h2 className="text-center text-3xl text-accent text-bold mb-5">Create a New Room</h2>
-        <form onSubmit={(e)=>HandleCreateRoom(e)} className="flex flex-col gap-3 justify-center text-center items-center"> 
-            <label className="text-muted text-lg ">Room title</label> 
+        <section className="min-h-[calc(100vh-4rem)] bg-background px-4 py-8 font-sans text-text sm:px-6 sm:py-12">
+          <div className="mx-auto w-full max-w-2xl rounded-2xl border border-border bg-elevated p-5 shadow-lg sm:p-8">
+            <h2 className="mb-2 text-center text-2xl font-bold text-accent sm:text-3xl">Create a New Room</h2>
+            <p className="mb-8 text-center text-sm text-muted sm:text-base">
+              Set up the details for your next reading room.
+            </p>
+        <form onSubmit={(e)=>HandleCreateRoom(e)} className="flex flex-col gap-2"> 
+            <label htmlFor="room-title" className="text-sm font-medium text-muted sm:text-base">Room title</label> 
             <input
+              id="room-title"
               value={createRoom.title}
-              onChange={(e) => setCreateRoom({ ...createRoom, title: e.target.value })}  className="bg-surface border border-border  px-4 py-2 rounded-xl text-text w-full max-w-md mx-auto h-auto text-center focus:border-accent mb-3 capitalize"
+              onChange={(e) => setCreateRoom({ ...createRoom, title: e.target.value })}  className="mb-4 h-11 w-full rounded-xl border border-border bg-surface px-4 py-2 text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:mb-5"
             /> 
-            <label className="text-muted text-lg ">Description</label>
-            <textarea  value={createRoom.description}
-              onChange={(e) => setCreateRoom({ ...createRoom, description: e.target.value })}  className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text w-full max-w-md mx-auto h-auto text-center mb-3 "
+            <label htmlFor="room-description" className="text-sm font-medium text-muted sm:text-base">Description</label>
+            <textarea
+              id="room-description"
+              value={createRoom.description}
+              onChange={(e) => setCreateRoom({ ...createRoom, description: e.target.value })}
+              rows="4"
+              className="mb-4 min-h-28 w-full resize-y rounded-xl border border-border bg-surface px-4 py-2 text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:mb-5"
             > </textarea>
-            <div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="difficulty" className="text-sm font-medium text-muted sm:text-base">Difficulty</label>
               <select
                 name="difficulty"
                 id="difficulty"
-                className=" px-4 py-2 text-text block mx-auto w-full max-w-xs appearance-none rounded-md border border-gray-300 bg-elevated shadow-sm focus:border-accent focus:outline-none focus:ring-accent mb-3"
+                className="h-11 w-full appearance-none rounded-xl border border-border bg-surface px-4 py-2 text-text shadow-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 spellCheck="false"
                 value={createRoom.difficulty}
                 onChange={(e) => setCreateRoom({ ...createRoom, difficulty: e.target.value })}
@@ -57,17 +68,23 @@ export default function CreateRoom(){
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>   
               </select>
-            </div>
-            <label className="text-muted text-lg ">Time Limit (minutes)</label>
+              </div>
+              <div className="flex flex-col gap-2">
+            <label htmlFor="time-limit" className="text-sm font-medium text-muted sm:text-base">Time Limit (minutes)</label>
             <input
+              id="time-limit"
               type="number"
+              min="1"
               value={createRoom.timeLimit}
-              onChange={(e) => setCreateRoom({ ...createRoom, timeLimit: e.target.value })}  className="bg-surface border border-border focus:border-accent px-4 py-2 rounded-xl text-text  block w-full max-w-xs mx-auto h-auto text-center mb-3"
+              onChange={(e) => setCreateRoom({ ...createRoom, timeLimit: e.target.value })}  className="h-11 w-full rounded-xl border border-border bg-surface px-4 py-2 text-text focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
             /> 
-            <div className="mb-5">
+              </div>
+            </div>
+            <div className="mt-6 flex justify-end sm:mt-8">
             <Button variant="primary">Create Room</Button>
             </div>
         </form>
+          </div>
         </section>
     )
 }
