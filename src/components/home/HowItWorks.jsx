@@ -5,7 +5,7 @@ export default function HowItWorks(){
         {number:3,title:'Escape',text:'Check the final puzzle, beat the timer, and see how you rank'},
     ]
     return (
-        <section className="mx-auto max-w-7xl px-5 py-16 text-center sm:px-8 lg:px-12">
+        <section className="page-container py-14 text-center sm:py-16">
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">The simple way in</p>
             <h2 className="mb-8 text-2xl font-semibold text-text sm:text-3xl">How it works</h2>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

@@ -9,11 +9,42 @@
   --color-accent:#D4A24C;
 }
 @layer base {
+   *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html {
+    background: var(--color-background);
+  }
   body {
     margin: 0;
     min-width: 320px;
     background: var(--color-background);
     font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+ button,
+  input,
+  select {
+    font: inherit;
+  }
+}
+@layer components {
+  .page-container {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .page-container {
+      width: min(100% - 4rem, 80rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-container {
+      width: min(100% - 6rem, 80rem);
+    }
   }
 }
 .reduce-motion *{

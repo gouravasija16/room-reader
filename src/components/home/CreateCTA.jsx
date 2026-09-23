@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 export default function CreateCTA(){
     const navigate=useNavigate()
     return(
-        <section className="relative mx-5 mb-16 overflow-hidden rounded-3xl border border-accent/25 bg-surface px-6 py-12 text-center sm:mx-8 sm:px-10 lg:mx-auto lg:max-w-7xl lg:px-12">
+         <section className="page-container relative mb-14 overflow-hidden rounded-3xl border border-accent/25 bg-surface px-5 py-10 text-center sm:mb-16 sm:px-10 sm:py-12 lg:px-12">
            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(212,162,76,0.14),transparent_45%)]" />
            <div className="relative z-10">
            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Build the impossible</p>

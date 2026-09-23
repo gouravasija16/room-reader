@@ -2,13 +2,17 @@ import Button from '../shared/Button.jsx'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Clock3, LockKeyhole, Sparkles } from 'lucide-react'
 
-export default function  Hero(){
+export default function Hero({ backgroundImage }){
   const navigate=useNavigate()
     return (
-           <section className="relative isolate overflow-hidden border-b border-border bg-background">
+           <section
+             className="relative isolate overflow-hidden border-b border-border bg-background"
+             style={backgroundImage ? { '--home-background-image': `url(${backgroundImage})` } : undefined}
+           >
+             <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,var(--color-background)_15%,transparent_100%),var(--home-background-image,none)] bg-cover bg-center opacity-40" />
              <div className="absolute -right-32 -top-32 -z-10 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
              <div className="absolute -bottom-48 left-1/4 -z-10 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
-             <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:px-12 lg:py-24">
+             <div className="page-container grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
                <div className="max-w-2xl text-center lg:text-left">
                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
                    <Sparkles size={14} aria-hidden="true" />
