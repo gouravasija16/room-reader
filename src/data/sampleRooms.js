@@ -1,5 +1,14 @@
+import TheClockmaker from '../assets/images/clockmaker.jpg';
+import TheHauntedStudy from '../assets/images/haunted-study.jpg';
+import CyberHeist from '../assets/images/cyber-heist.jpg';
+import TheAncientTomb from '../assets/images/ancient-tomb.jpg';
+import ThePiratesCove from '../assets/images/pirates-cove.jpg';
+import SpaceStationOmega from '../assets/images/space-station-omega.jpg';
+import TheWizardsTower from '../assets/images/wizards-tower.jpg';
+import MurderMysteryManor from '../assets/images/murder-mystery-manor.jpg';
+import JungleTempleRuins from '../assets/images/jungle-temple-ruins.jpg';
 export const sampleRooms=[
-    {id:'room-1',title:"The Clockmaker's Room",difficulty:'Easy',puzzleCount:7,timeLimit:25,description:"You wake up in a dusty clockmaker's workshop,gears ticking all around you. Solve the puzzles hidden in time itself before the final chime seals your fate. ",
+    {id:'room-1',title:"The Clockmaker's Room",coverImage: TheClockmaker, difficulty:'Easy',puzzleCount:7,timeLimit:25,description:"You wake up in a dusty clockmaker's workshop,gears ticking all around you. Solve the puzzles hidden in time itself before the final chime seals your fate. ",
         puzzles:[
             { id:'p1',
               question:"I have hands but no arms,a face but no eyes. What am I?",
@@ -28,7 +37,7 @@ export const sampleRooms=[
             }
         ]
     },
-     {id:'room-2',title:'The Haunted Study',difficulty:'Medium',puzzleCount:5,timeLimit:30,description:"An old, candlelit study creaks with very step. Somewhere among the towering bookshelves lies the secret to your escape — if the ghosts don't find you first. ",
+     {id:'room-2',title:'The Haunted Study',coverImage: TheHauntedStudy, difficulty:'Medium',puzzleCount:5,timeLimit:30,description:"An old, candlelit study creaks with very step. Somewhere among the towering bookshelves lies the secret to your escape — if the ghosts don't find you first. ",
        puzzles:[
             { id:'p1',
               question:"I have keys but no locks,space but no room.You can enter but can't go outside.What am I",
@@ -57,7 +66,7 @@ export const sampleRooms=[
             }
         ]
      },
-      {id:'room-3',title:'Cyber Heist',difficulty:'Hard',puzzleCount:6,timeLimit:20,description:"You've broken into a heavily encrypted server room. Crack the code,outsmart the firewalls, and get out before security traces your location. ",
+      {id:'room-3',title:'Cyber Heist',coverImage: CyberHeist, difficulty:'Hard',puzzleCount:6,timeLimit:20,description:"You've broken into a heavily encrypted server room. Crack the code,outsmart the firewalls, and get out before security traces your location. ",
          puzzles:[
             { id:'p1',
               question:"I speak without a mouth and hear without ears.I have no body, but I come alive with the wind. What am I? ",
@@ -91,7 +100,7 @@ export const sampleRooms=[
             }
         ]
       },
-       {id:'room-4',title:'Ancient Tomb',difficulty:'Medium',puzzleCount:5,timeLimit:30,description:"Deep beneath the desert sands lies a forgotten pharaoh's tomb. Decipher the hieroglyphs and outwit ancient traps before the tomb seals shut forever. ",
+       {id:'room-4',title:'Ancient Tomb',coverImage: TheAncientTomb, difficulty:'Medium',puzzleCount:5,timeLimit:30,description:"Deep beneath the desert sands lies a forgotten pharaoh's tomb. Decipher the hieroglyphs and outwit ancient traps before the tomb seals shut forever. ",
          puzzles:[
             { id:'p1',
               question:"I am burried but never dead, wrapped but never cold. What am I? ",
@@ -120,7 +129,7 @@ export const sampleRooms=[
             }
           ]
         },
-         {id:'room-5',title:"The Pirate's Cove",difficulty:'Medium',puzzleCount:5,timeLimit:25,description:"Trapped in a smuggler's hidden cave, you must follow the clues left by a long-dead pirate captain to find the treasure — and the way out.",
+         {id:'room-5',title:"The Pirate's Cove",coverImage: ThePiratesCove, difficulty:'Medium',puzzleCount:5,timeLimit:25,description:"Trapped in a smuggler's hidden cave, you must follow the clues left by a long-dead pirate captain to find the treasure — and the way out.",
          puzzles:[
             { id:'p1',
               question:"I am burried but not dead, marked but not written on, and everyone wants to find me. What am I? ",
@@ -149,7 +158,7 @@ export const sampleRooms=[
             }
         ]
       },
-       {id:'room-6',title:'Space station Omega',difficulty:'Hard',puzzleCount:5,timeLimit:20,description:"Life support is failing on this abandoned space station. Navigate the wreckage, solve the station's final commands, and reach the escape pod in time.",
+       {id:'room-6',title:'Space station Omega',coverImage: SpaceStationOmega, difficulty:'Hard',puzzleCount:5,timeLimit:20,description:"Life support is failing on this abandoned space station. Navigate the wreckage, solve the station's final commands, and reach the escape pod in time.",
          puzzles:[
             { id:'p1',
               question:"I orbit but never land, I shine but have no light of my own. What am I? ",
@@ -178,7 +187,7 @@ export const sampleRooms=[
             }
         ]
       },
-       {id:'room-7',title:"The Wizard's Tower",difficulty:'Hard',puzzleCount:5,timeLimit:30,description:"You've been sealed inside a sorcerer's tower, surrounded by ancient spellbooks and glowing artifacts. Unravel the magic before the enchantment traps you forever ",
+       {id:'room-7',title:"The Wizard's Tower",coverImage: TheWizardsTower, difficulty:'Hard',puzzleCount:5,timeLimit:30,description:"You've been sealed inside a sorcerer's tower, surrounded by ancient spellbooks and glowing artifacts. Unravel the magic before the enchantment traps you forever ",
          puzzles:[
             { id:'p1',
               question:"I am cast but not thrown, spoken but not heard aloud, and I can change the world around me. What am I? ",
@@ -207,7 +216,7 @@ export const sampleRooms=[
             }
         ]
       },
-       {id:'room-8',title:'Murder Mystery Manor',difficulty:'Hard',puzzleCount:6,timeLimit:35,description:"A body has been found in the study, and the manor's doors are locked. Piece together the clues and uncover the killer before they strike again.",
+       {id:'room-8',title:'Murder Mystery Manor',coverImage: MurderMysteryManor, difficulty:'Hard',puzzleCount:6,timeLimit:35,description:"A body has been found in the study, and the manor's doors are locked. Piece together the clues and uncover the killer before they strike again.",
          puzzles:[
             { id:'p1',
               question:"I am left behind but never brought, I can convict but never speak. What am I? ",
@@ -236,7 +245,7 @@ export const sampleRooms=[
             }
         ]
       },
-       {id:'room-9',title:'Jungle Temple Ruins',difficulty:'Medium',puzzleCount:5,timeLimit:25,description:"Vines have swallowed this ancient temple whole. Navigate its traps and decode its carvings to find the way out before the jungle reclaims it completely ",
+       {id:'room-9',title:'Jungle Temple Ruins',coverImage: JungleTempleRuins, difficulty:'Medium',puzzleCount:5,timeLimit:25,description:"Vines have swallowed this ancient temple whole. Navigate its traps and decode its carvings to find the way out before the jungle reclaims it completely ",
          puzzles:[
             { id:'p1',
               question:"I am carved by ancient hands, hidden by vines, and guard the temple's secret. What am I? ",
