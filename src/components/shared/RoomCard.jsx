@@ -5,7 +5,14 @@ export default function RoomCard({room,id}){
     return(
          <article className="interactive-lift group flex min-h-80 flex-col overflow-hidden rounded-2xl border border-border bg-elevated text-left transition duration-300 hover:-translate-y-1 hover:border-accent/70 hover:shadow-lg hover:shadow-black/20" id={id}>
           <div className="relative aspect-video w-full overflow-hidden bg-[radial-gradient(circle_at_25%_20%,rgba(212,162,76,0.3),transparent_42%),linear-gradient(135deg,#1a1f24,#0b0d0f)]">
-            {room.coverImage && <img src={room.coverImage} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />}
+             {room.coverImage && (
+                <img
+                    src={room.coverImage}
+                    alt={`${room.title} cover`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+            )}
             <div className="absolute inset-0 bg-linear-to-t from-elevated via-transparent to-transparent" />
             <div className="absolute bottom-3 left-4"><DifficultyBadge difficulty={room.difficulty} /></div>
           </div>

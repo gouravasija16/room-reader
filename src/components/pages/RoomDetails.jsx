@@ -31,8 +31,8 @@ export default function RoomDetails() {
                             {room.coverImage && (
                                 <img
                                     src={room.coverImage}
-                                    alt=""
-                                    className="absolute inset-0 h-full w-full object-cover opacity-60"
+                                    alt={`${room.title} room cover`}
+                                    className="absolute inset-0 h-full w-full object-cover object-center opacity-80 saturate-110 contrast-105"
                                 />
                             )}
                             <div className="absolute inset-0 bg-linear-to-t from-background via-background/30 to-transparent" />

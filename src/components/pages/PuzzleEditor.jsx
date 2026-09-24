@@ -3,6 +3,7 @@ import { useContext,useEffect,useReducer,useState } from "react"
 import { RoomContext } from "../context/RoomContext"
 import Button from "../shared/Button"
 import useFetch from "../shared/useFetch"
+import { LoaderCircle } from "lucide-react"
 export default function PuzzleEditor(){
     const {data,loading,error,fetchRiddle}=useFetch()
     const {puzzleId}=useParams()
@@ -74,7 +75,21 @@ function SaveHandler(e){
         <section className="bg-elevated px-6 py-4 border border-border rounded-lg">
         <h2 className="text-2xl font-bold text-text mb-4">{isNew ? 'Add New Puzzle' : 'Edit Puzzle'}</h2>
         <div className="m-4">
-            <Button variant="secondary" onClick={fetchRiddle} disabled={loading}>{loading ? 'fetching':'Suggest a Puzzle'}</Button>
+           <Button
+                variant="secondary"
+                onClick={fetchRiddle}
+                disabled={loading}
+                aria-busy={loading}
+            >
+                {loading ? (
+                    <>
+                        <LoaderCircle aria-hidden="true" className="size-4 animate-spin" />
+                        Fetching...
+                    </>
+                ) : (
+                    "Suggest a Puzzle"
+                )}
+                </Button>
         </div>
         {error && <p role="alert" className="text-red-400 text-sm">{error}</p>}
         {formError && <p role="alert" className="text-red-400 text-sm">{formError}</p>}

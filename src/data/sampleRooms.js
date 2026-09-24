@@ -1,12 +1,12 @@
-import TheClockmaker from '../assets/images/clockmaker.jpg';
-import TheHauntedStudy from '../assets/images/haunted-study.jpg';
-import CyberHeist from '../assets/images/cyber-heist.jpg';
-import TheAncientTomb from '../assets/images/ancient-tomb.jpg';
-import ThePiratesCove from '../assets/images/pirates-cove.jpg';
-import SpaceStationOmega from '../assets/images/space-station-omega.jpg';
-import TheWizardsTower from '../assets/images/wizards-tower.jpg';
-import MurderMysteryManor from '../assets/images/murder-mystery-manor.jpg';
-import JungleTempleRuins from '../assets/images/jungle-temple-ruins.jpg';
+import TheClockmaker from '../assets/TheClockmaker.jpg';
+import TheHauntedStudy from '../assets/Haunted.jpg';
+import CyberHeist from '../assets/CyberHeist.jpg';
+import TheAncientTomb from '../assets/AncientTomb.jpg';
+import ThePiratesCove from '../assets/Pirate.jpg';
+import SpaceStationOmega from '../assets/spaceStation.jpg';
+import TheWizardsTower from '../assets/wizardTower.jpg';
+import MurderMysteryManor from '../assets/murderMystery.jpg';
+import JungleTempleRuins from '../assets/jungleTemple.jpg';
 export const sampleRooms=[
     {id:'room-1',title:"The Clockmaker's Room",coverImage: TheClockmaker, difficulty:'Easy',puzzleCount:7,timeLimit:25,description:"You wake up in a dusty clockmaker's workshop,gears ticking all around you. Solve the puzzles hidden in time itself before the final chime seals your fate. ",
         puzzles:[
