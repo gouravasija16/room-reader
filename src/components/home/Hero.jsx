@@ -1,8 +1,8 @@
 import Button from '../shared/Button.jsx'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Clock3, LockKeyhole, Sparkles } from 'lucide-react'
-
-export default function Hero({ backgroundImage }){
+import heroBackground from '../../assets/bgImg/bg image.avif'
+export default function Hero({ backgroundImage  = heroBackground }){
   const navigate=useNavigate()
     return (
            <section
