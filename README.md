@@ -1,16 +1,46 @@
-# React + Vite
+# Room Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Room Reader is a browser-based escape-room game. Explore themed rooms, solve timed puzzles, and create your own mysteries to play.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Browse rooms and filter by name or difficulty.
+- Play through puzzles against a countdown timer, with optional hints.
+- Review your completion time and hint count, and track your personal best for each room.
+- Create rooms, add and edit puzzles, and preview your room before playing.
+- View completed rooms and best times in your play history.
+- Adjust ambient music and reduced-motion preferences.
 
-## React Compiler
+Room content, preferences, and play records are stored in the browser's local storage. The login flow is a lightweight local demo and does not provide server-backed authentication.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+### Requirements
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js and npm
+
+### Install and run
+
+```sh
+npm install
+npm run dev
+```
+
+Vite prints the local URL when the development server is ready.
+
+## Available scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server. |
+| `npm run build` | Create a production build in `dist/`. |
+| `npm run preview` | Serve the production build locally. |
+| `npm run lint` | Run ESLint across the project. |
+
+## Tech stack
+
+- React 19
+- Vite
+- React Router
+- Tailwind CSS 4
+- Lucide icons

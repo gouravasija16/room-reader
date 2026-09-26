@@ -2,6 +2,7 @@ import Button from "../shared/Button"
 import useLocalStorage from "../shared/useLocalStorage"
 import {useState} from "react"
 import { useNavigate } from "react-router-dom"
+import getRandomFallbackImages from "../../utils/fallbackImages"
 export default function CreateRoom(){
   const [createRoom,setCreateRoom]=useState({
     title:"",
@@ -45,7 +46,7 @@ export default function CreateRoom(){
         description:description,
         difficulty:createRoom.difficulty,
         timeLimit:timeLimit,
-        coverImage:createRoom.coverImage.trim(),
+        coverImage:getRandomFallbackImages(),
         puzzles: []
     }
     setMyRooms([...myRooms,newRoom])
