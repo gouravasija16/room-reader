@@ -47,10 +47,6 @@ export default function Hero({ backgroundImage }){
                      </div>
                    </div>
                  </div>
-                 <div className="absolute -bottom-5 -left-3 rounded-2xl border border-border bg-surface px-4 py-3 shadow-xl sm:-left-6">
-                   <p className="text-xs text-muted">Players escaping now</p>
-                   <p className="mt-1 font-semibold text-text">1,284 <span className="text-accent">•</span> live</p>
-                 </div>
                </div>
              </div>
            </section>
